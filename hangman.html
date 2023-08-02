@@ -48,6 +48,11 @@
                             blanks = blanks.substr(0, index) + id + 
                                      blanks.substr(index + 1);
                             $("#word").html(blanks);
+                            
+                            }
+
+                          if (blanks == word) {
+                                  $("#error_msg").text("YOU WON!!!!");
                             }
                         }
                     }

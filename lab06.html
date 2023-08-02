@@ -41,10 +41,25 @@
     
     <div id="map">
       <img id="map-image" src="Screen Shot 2023-07-12 at 10.00.41 PM.png">
-      <br>
-      The data for this map was collected by UC Berkeley Students
     </div>
 
+    <button id="task">
+      Click here to learn more about the map!
+    </button>
+
+    <p hidden id="task">
+      The data for this map of water fountains was gathered by students at UC Berkeley.
+    </p>
+
+    <script>
+      $("button#task").hover(
+        function() {
+                $("p#task").show();
+            }
+        );
+      
+    </script>
+    
     <h3>Where I am from</h3>
     
     <p>I am from Etna, NH. I live less than 10 miles from where I go to <del>college</del>. I have a german shepard named Toby and I have recently gotten into fly fishing.</p>

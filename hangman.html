@@ -14,9 +14,9 @@
 
               var total_guesses = 10;
 
-              var word = "p a r l i a m e n t";
+              var word = "p a r o d y";
 
-              var blanks = "_ _ _ _ _ _ _ _ _ _";
+              var blanks = "_ _ _ _ _ _";
 
               var guesses = "";
 
@@ -40,7 +40,16 @@
                             $("#error_msg").html("You are out of guesses. YOU LOSE!")
                         } else {
                           $("#numleft").html(total_guesses);
-                       }
+
+                          if (word.includes(id)) {
+                            var index = word.indexOf(id);
+                            console.log("letter" + id + " is at index " +
+                                        index);
+                            blanks = blanks.substr(0, index) + id + 
+                                     blanks.substr(index + 1);
+                            $("#word").html(blanks);
+                            }
+                        }
                     }
                 }
 

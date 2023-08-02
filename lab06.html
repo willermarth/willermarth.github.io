@@ -6,6 +6,8 @@
   
   <title>This is Will's first web page!</title>
   <link rel="stylesheet" href="style05.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   
 </head>
 
@@ -19,10 +21,12 @@
     
     <h3>What I do</h3>
 
-    <p class="data">
-      <script> 
-        document.write("I am a student at Dartmouth College majoring in Quantitative Social Science. I decided to take Web Mapping because it seemed interesting!"); 
-      </script>
+    <button id="job">
+      Click here to find out!
+    </button>
+    
+    <p class="data" hidden id="job">
+      I am a student at Dartmouth College majoring in Quantitative Social Science. I decided to take Web Mapping because it seemed interesting!
     </p>
 
     <div id="map">

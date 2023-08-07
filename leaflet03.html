@@ -43,7 +43,9 @@
                    opacity: 0.5,
                    onEachFeature: function(feature, layer) {
                           layer.bindPopup("<b>Name: " +
-                                         feature.properties.NAME + "</b><br>")
+                                         feature.properties.NAME + "</b><br>" +
+                                         "Section Length: " + 
+                                         feature.properties.SECT_LENGTH)
                    }
                   }).addTo(map);
         

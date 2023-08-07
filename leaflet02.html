@@ -18,6 +18,8 @@
       #map { height: 400px; width: 700px; }
       html, body { height: 100%; margin: 0; padding: 0; }
     </style>
+
+    <script src="New_Hampshire_Railroads.geojson"></script>
     
     <script>
 
@@ -32,6 +34,9 @@
           zoom: 15,
           layers: [OpenStreetMap_HOT]
         })
+
+        L.geoJson(railroads_geojson).addTo(map);
+        
       }
     </script>
     

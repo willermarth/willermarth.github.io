@@ -40,7 +40,8 @@
                    weight: 5,
                    opacity: 0.5,
                    onEachFeature: function(feature, layer) {
-                          layer.bindPopup("<b>")
+                          layer.bindPopup("<b>Name: " +
+                                         feature.properties.Name)
                    }
                   }).addTo(map);
         

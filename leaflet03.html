@@ -29,6 +29,21 @@
                                           {maxZoom: 19, 
                                            attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
                                           })
+
+      function lineSymbology(feature) {
+            var length = feature.properties.SECT_LENGTH;
+            var lineWidth = 2;
+            var lineColor = "#a1d76a";
+
+            if (length > 20.0) { lineColor = "#777777"; lineWidth = 4; }
+            if (length > 35.0) { lineColor = "#e9a3c9"; lineWidth = 6; }
+
+          return {
+            color: lineColor,
+            weight: lineWidth,
+            opacity: 1
+          };
+      }
       
       function initialize() {
         var map = L.map('map', {
@@ -38,9 +53,7 @@
         })
 
         railroadsLayer = L.geoJson(railroads_geojson,
-                  { color: "blue",
-                   weight: 5,
-                   opacity: 0.5,
+                  { style: lineSymbology,
                    onEachFeature: function(feature, layer) {
                           layer.bindPopup("<b>Name: " +
                                          feature.properties.NAME + "</b><br>" +

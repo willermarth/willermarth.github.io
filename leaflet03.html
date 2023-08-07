@@ -17,6 +17,7 @@
     <style>
       #map { height: 400px; width: 700px; }
       html, body { height: 100%; margin: 0; padding: 0; }
+      #buttons { padding: 10px; background: #f3d1c9; }
     </style>
 
     <script src="New_Hampshire_Railroads.geojson"></script>
@@ -58,7 +59,7 @@
                           layer.bindPopup("<b>Name: " +
                                          feature.properties.NAME + "</b><br>" +
                                          "Section Length: " + 
-                                         feature.properties.SECT_LENGTH)
+                                         feature.properties.SECT_LENGTH);
                    }
                   }).addTo(map);
         
@@ -67,8 +68,8 @@
                    weight: 5,
                    opacity: 0.2,
                    onEachFeature: function(feature, layer) {
-                          layer.bindPopup("<b>Name: " +
-                                         feature.properties.NAME + "</b>")
+                          layer.bindPopup("<b>FID: " +
+                                         feature.properties.FID + "</b>");
                    }
                   }).addTo(map);
       }
@@ -81,5 +82,10 @@
       Hello Campus!
     </h1>
     <div id="map"></div>
+    <div id="buttons">
+
+        <button id = "toggleRailroads">Toggle the Railroads Layer.</button>
+      
+    </div>
   </body>
 </html>

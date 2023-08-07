@@ -16,7 +16,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script type= "text/javaScript" src="https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}"></script>
+    <script type= "text/javaScript" src="https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"></script>
     
     <style>
       #map { height: 400px; width: 400px; }
@@ -36,7 +36,7 @@
                                            attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
                                           })
 
-      var stamenLayer = new L.StamenTileLayer("Toner");
+      var usgsLayer = new L.USGSTileLayer("USImagery");
       
       function lineSymbology(feature) {
             var length = feature.properties.SECT_LENGTH;
@@ -60,7 +60,7 @@
         })
 
         var baseMaps = { "OSM" : OpenStreetMap_HOT, 
-                        "Stamen" : stamenLayer
+                        "USGS" : usgsLayer
                        }
         L.control.layers(baseMaps).addTo(map);
 

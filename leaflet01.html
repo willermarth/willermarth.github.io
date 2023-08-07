@@ -20,6 +20,12 @@
     </style>
     
     <script>
+
+      var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+                                          {maxZoom 19, 
+                                           attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
+                                          })
+      
       function initialize() {
         var map = L.map('map', {
           center: [43.7034, -72.2887],

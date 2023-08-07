@@ -20,6 +20,7 @@
     </style>
 
     <script src="New_Hampshire_Railroads.geojson"></script>
+    <script src="New_Hampshire_Senate_District_Boundaries_2022.geojson"></script>
     
     <script>
 
@@ -45,6 +46,15 @@
                    }
                   }).addTo(map);
         
+        L.geoJson(senate_geojson,
+                  { color: "green",
+                   weight: 5,
+                   opacity: 0.2,
+                   onEachFeature: function(feature, layer) {
+                          layer.bindPopup("<b>Name: " +
+                                         feature.properties.NAME + "</b>")
+                   }
+                  }).addTo(map);
       }
     </script>
     

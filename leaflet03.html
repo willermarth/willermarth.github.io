@@ -16,7 +16,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script type= "text/javaScript" src="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}"></script>
+    <script type= "text/javaScript" src="'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}"></script>
     
     <style>
       #map { height: 400px; width: 400px; }
@@ -36,7 +36,7 @@
                                            attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
                                           })
 
-      var nasaLayer = new L.NasaTileLayer("night");
+      var stamenLayer = new L.StamenTileLayer("Toner");
       
       function lineSymbology(feature) {
             var length = feature.properties.SECT_LENGTH;
@@ -60,7 +60,7 @@
         })
 
         var baseMaps = { "OSM" : OpenStreetMap_HOT, 
-                        "Nasa" : nasaLayer
+                        "Stamen" : stamenLayer
                        }
         L.control.layers(baseMaps).addTo(map);
 

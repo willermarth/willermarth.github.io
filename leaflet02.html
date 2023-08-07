@@ -35,7 +35,11 @@
           layers: [OpenStreetMap_HOT]
         })
 
-        L.geoJson(railroads_geojson).addTo(map);
+        L.geoJson(railroads_geojson,
+                  { color: "blue",
+                   weight: 5,
+                   opacity: 0.5
+                  }).addTo(map);
         
       }
     </script>

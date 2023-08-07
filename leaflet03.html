@@ -36,7 +36,7 @@
                                            attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
                                           })
 
-      var nasaLayer = new L.StamenTileLayer("night");
+      var nasaLayer = new L.NasaTileLayer("night");
       
       function lineSymbology(feature) {
             var length = feature.properties.SECT_LENGTH;

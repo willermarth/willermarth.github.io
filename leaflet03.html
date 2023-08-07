@@ -15,6 +15,8 @@
    crossorigin=""/>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type= "text/javaScript" src="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}"></script>
     
     <style>
       #map { height: 400px; width: 700px; }
@@ -34,6 +36,8 @@
                                            attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
                                           })
 
+      var nasaLayer = new L.StamenTileLayer("night");
+      
       function lineSymbology(feature) {
             var length = feature.properties.SECT_LENGTH;
             var lineWidth = 2;
@@ -52,9 +56,13 @@
       function initialize() {
         var map = L.map('map', {
           center: [43.7034, -72.2887],
-          zoom: 15,
-          layers: [OpenStreetMap_HOT],
+          zoom: 15
         })
+
+        var baseMaps = { "OSM" : OpenStreetMap_HOT, 
+                        "Nasa" : nasaLayer
+                       }
+        L.control.layers(baseMaps).addTo(map);
 
         railroadsLayer = L.geoJson(railroads_geojson,
                   { style: lineSymbology,

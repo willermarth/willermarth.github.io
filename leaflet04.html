@@ -25,8 +25,7 @@
     <script src="New_Hampshire_Senate_District_Boundaries_2022.geojson"></script>
     
     <script>
-      var railroadsLayer;
-      var railroadsVisible = false;
+      var railroadsVisible = true;
 
       var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                                           {maxZoom: 19, 
@@ -61,6 +60,11 @@
                        }
         
         L.control.layers(baseMaps).addTo(map);
+
+        var response = $.ajax({
+          url: New_Hampshire_Railroads2.geojson
+                             
+        })
 
         railroadsLayer = L.geoJson(railroads_geojson,
                   { style: lineSymbology,

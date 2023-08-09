@@ -62,40 +62,51 @@
         L.control.layers(baseMaps).addTo(map);
 
         var response = $.ajax({
-          url: New_Hampshire_Railroads2.geojson
+          url: "New_Hampshire_Railroads2.geojson",
+          dataType: "json",
+          success: console.log("railroads data loaded!"),
+          error: function(xhr) {
+            alert(xhr.statusText);
+          }
                              
         })
 
-        railroadsLayer = L.geoJson(railroads_geojson,
-                  { style: lineSymbology,
-                   onEachFeature: function(feature, layer) {
-                          layer.bindPopup("<b>Name: " +
-                                         feature.properties.NAME + "</b><br>" +
-                                         "Section Length: " + 
-                                         feature.properties.SECT_LENGTH);
-                   }
-                  });
-        
-        L.geoJson(senate_geojson,
-                  { color: "green",
-                   weight: 5,
-                   opacity: 0.2,
-                   onEachFeature: function(feature, layer) {
-                          layer.bindPopup("<b>FID: " +
-                                         feature.properties.FID + "</b>");
-                   }
-                  }).addTo(map);
+        $.when(response).done(function(){
+          
 
-        $("#toggleRailroads").click( function() {
-              if (railroadsVisible) {
-                railroadsVisible = false;
-                railroadsLayer.removeFrom(map);
-              } else {
-                railroadsVisible = true;
-                railroadsLayer.addTo(map);
-              }
+               var railroadsLayer = L.geoJson(response.responseJSON,
+                      { style: lineSymbology,
+                       onEachFeature: function(feature, layer) {
+                              layer.bindPopup("<b>Name: " +
+                                           feature.properties.NAME + "</b><br>" +
+                                           "Section Length: " + 
+                                           feature.properties.SECT_LENGTH);
+                       }
+                      });
+        
+              L.geoJson(senate_geojson,
+                      { color: "green",
+                       weight: 5,
+                       opacity: 0.2,
+                       onEachFeature: function(feature, layer) {
+                              layer.bindPopup("<b>FID: " +
+                                             feature.properties.FID + "</b>");
+                       }
+                      }).addTo(map);
+
+            $("#toggleRailroads").show();
+          
+            $("#toggleRailroads").click( function() {
+                  if (railroadsVisible) {
+                    railroadsVisible = false;
+                    railroadsLayer.removeFrom(map);
+                  } else {
+                    railroadsVisible = true;
+                    railroadsLayer.addTo(map);
+                  }
                   
-        })
+            })
+        });
       }
     </script>
     
@@ -108,7 +119,7 @@
     <div id="map"></div>
     <div id="buttons">
 
-        <button id = "toggleRailroads">Toggle the Railroads Layer.</button>
+        <button id = "toggleRailroads" hidden>Toggle the Railroads Layer.</button>
       
     </div>
   </body>

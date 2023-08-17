@@ -1,73 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    
-    <title>
-      U.S. Wind Energy
-    </title>
-    
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-   crossorigin=""></script>
-    
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-   crossorigin=""/>
-    
-    <style>
-      /* Center align the text */
-      h1 {
-        text-align: center;
-      }
-      /* Center align the map */
-      #map {
-        margin: 0 auto; /* This will horizontally center the map */
-        height: 600px;
-        width: 900px;
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-      }
+<head>
+  <title>
+    U.S. Wind Energy
+  </title>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+  <style>
+    /* Center align the text */
+    h1 {
+      text-align: center;
+    }
+    /* Center align the map */
+    #map {
+      margin: 0 auto; /* This will horizontally center the map */
+      height: 400px;
+      width: 700px;
+      border: 2px solid #333; /* Add a border around the map */
+    }
+    /* Style for the "history" section */
+    .history {
+      background-color: #f2f2f2; /* Set a background color */
+      border: 1px solid #999; /* Add a border */
+      padding: 10px; /* Add some padding for better appearance */
+      margin: 20px auto; /* Center the section horizontally */
+      max-width: 800px; /* Limit the width of the section */
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <script>
+    var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
+    });
 
-    </style>
-    
-    <script>
+    function initialize() {
+      var map = L.map('map', {
+        center: [43.7034, -71.2887],
+        zoom: 7,
+        layers: [OpenStreetMap_HOT]
+      });
 
-      var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-                                          {maxZoom: 19, 
-                                           attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
-                                          })
-      
-      function initialize() {
-        var map = L.map('map', {
-          center: [43.7034, -71.2887],
-          zoom: 7,
-          layers: [OpenStreetMap_HOT]
-        })
-        
-        L.marker([43.8, -71.3]).addTo(map)
+      L.marker([43.8, -71.3]).addTo(map)
         .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
         .openPopup();
-      }
-      
-      
-    </script>
-    
-  </head>
-  
-  <body onload="initialize()">
-    <h1>
-      Wind Energy in the U.S.
-    </h1>
-    <h2>
-      History
-    </h2>
-    <p>People used wind energy to propel boats along the Nile River as early as 5,000 BC. 
-      By 200 BC, simple wind-powered water pumps were used in China, 
-      and windmills with woven-reed blades were grinding grain in Persia and the Middle East.</p>
-    <div id="map"></div>
-  </body>
+    }
+  </script>
+</head>
+<body onload="initialize()">
+  <h1>
+    The U.S. Wind Energy Market
+  </h1>
+  <div class="history">
+    <h2>History</h2>
+    <p>This is the history section.</p>
+  </div>
+  <div id="map"></div>
+</body>
 </html>
+

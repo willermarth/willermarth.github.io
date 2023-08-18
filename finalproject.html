@@ -63,12 +63,6 @@
     layers: [OpenStreetMap_HOT]
   });
 
-  // Load and display the GeoJSON data
-  fetch('windturbine.geojson')
-    .then(response => response.json())
-    .then(data => {
-      L.geoJSON(data).addTo(map);
-    });
 }
     
   </script>

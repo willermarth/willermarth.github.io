@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
+
+  <script src="windturbine.geojson"></script>
   
   <style>
 
@@ -61,12 +63,6 @@
     layers: [OpenStreetMap_HOT]
   });
 
-  fetch('windturbine.geojson')
-    .then(response => response.json())
-    .then(data => {
-      L.geoJSON(data).addTo(map);
-    });
-
 }
     
   </script>
@@ -92,7 +88,7 @@
   </div>
   <div class="wind-turbine-locations">
     <h2>Current U.S. Wind Turbine Locations</h2>
-    <p>This is the content about wind turbine locations.</p>
+    <p>The map below shows the locations of all wind turbines in the U.S. in 2023. Toggle the buttons below the map to focus in on some areas of interest.</p>
   </div>
   <div id="map"></div>
 </body>

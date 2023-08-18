@@ -57,15 +57,22 @@
     });
 
     function initialize() {
-      var map = L.map('map', {
-        center: [37.0902, -95.7129], 
-        zoom: 4,
-        layers: [OpenStreetMap_HOT]
-      });
-      
-    }
+  var map = L.map('map', {
+    center: [37.0902, -95.7129], 
+    zoom: 4,
+    layers: [OpenStreetMap_HOT]
+  });
+
+  // Load and display the GeoJSON data
+  fetch('windturbine.geojson')
+    .then(response => response.json())
+    .then(data => {
+      L.geoJSON(data).addTo(map);
+    });
+}
     
   </script>
+  
 </head>
 <body onload="initialize()">
   <h1>

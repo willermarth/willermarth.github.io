@@ -73,6 +73,16 @@
                         feature.properties.p_name + "</b>");
                      }
                     }).addTo(map);
+
+    var response = $.ajax({
+          url: "windturbines.geojson",
+          dataType: "json",
+          success: console.log("wind turbine data loaded!"),
+          error: function(xhr) {
+            alert(xhr.statusText);
+          }
+                             
+      })
     
   </script>
   

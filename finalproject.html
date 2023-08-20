@@ -62,7 +62,7 @@
     zoom: 4,
     layers: [OpenStreetMap_HOT]
   });
-}
+
 
     L.geoJson(turbines,
                     { onEachFeature: function(feature, layer) {
@@ -70,7 +70,7 @@
                         feature.properties.P_NAME + "</b>");
                      }
                     }).addTo(map);
-    
+    }
   </script>
   
 </head>

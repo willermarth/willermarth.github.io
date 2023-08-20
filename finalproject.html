@@ -57,20 +57,22 @@
     });
 
     function initialize() {
+      
   var map = L.map('map', {
     center: [37.0902, -95.7129], 
     zoom: 4,
     layers: [OpenStreetMap_HOT]
   });
 
-
     L.geoJson(turbines,
-                    { onEachFeature: function(feature, layer) {
-                        layer.bindPopup("<b>Name: " +
-                        feature.properties.P_NAME + "</b>");
-                     }
-                    }).addTo(map);
+                { onEachFeature: function(feature, layer) {
+                     layer.bindPopup("<b>Name: " +
+                     feature.properties.P_NAME + "</b>");
+                   }
+                 }).addTo(map);
+      
     }
+    
   </script>
   
 </head>

@@ -74,6 +74,10 @@
           }
                              
         })
+    
+      $.when(response).done(function() { 
+        L.geoJSON(response).addTo(map); 
+      });
       
     }
     

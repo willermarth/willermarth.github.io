@@ -65,7 +65,15 @@
       layers: [OpenStreetMap_HOT]
         });
 
-
+    var response = $.ajax({
+          url: "windturbine.geojson",
+          dataType: "json",
+          success: console.log("windturbine data loaded!"),
+          error: function(xhr) {
+            alert(xhr.statusText);
+          }
+                             
+        })
       
     }
     

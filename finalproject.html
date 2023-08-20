@@ -64,7 +64,7 @@
   });
 }
 
-    var windmills = L.geoJson(turbines,
+    L.geoJson(turbines,
                     { onEachFeature: function(feature, layer) {
                         layer.bindPopup("<b>Name: " +
                         feature.properties.P_NAME + "</b>");

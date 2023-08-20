@@ -65,14 +65,16 @@
 }
 
     var windturbine = $.ajax({
-          url: "windturbine.geojson",
-          dataType: "json",
-          success: console.log("wind turbine data loaded!"),
-          error: function(xhr) {
-            alert(xhr.statusText);
-          }
-                             
-      })
+      url: "windturbine.geojson",
+      dataType: "json",
+      success: function(data) {
+        L.geoJSON(data).addTo(map);
+        console.log("Wind turbine data loaded!");
+      },
+      error: function(xhr) {
+        alert(xhr.statusText);
+      }
+    });
     
   </script>
   

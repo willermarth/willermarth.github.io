@@ -104,12 +104,12 @@
   </style>
   
   <script>
+  $(document).ready(function() {
+    
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
     });
-
-    function initialize() {
       
     var map = L.map('map', {
       center: [37.0902, -95.7129], 
@@ -134,16 +134,16 @@
                                            feature.properties.p_name + "</b><br>" +
                                            "Project Year: " + 
                                            feature.properties.p_year);
-                   })
+                   
              }).addTo(map);
-      
-    }
+        })
+    })
     
     
   </script>
   
 </head>
-<body onload="initialize()">
+<body>
   <h1>
     Wind Energy in the U.S.
   </h1>

@@ -50,13 +50,11 @@
     }
 
     .custom-cluster-icon {
-      background-color: #5fd7d9;
       border-radius: 50%;
       color: black;
-      width: 36px;
-      height: 36px;
       text-align: center;
-      line-height: 36px;
+      line-height: 1.5;
+      font-weight: bold;
     }
     
     .sources {
@@ -133,12 +131,17 @@
 
     var markers = L.markerClusterGroup({
     iconCreateFunction: function(cluster) {
+        var childCount = cluster.getChildCount();
+        var iconSize = childCount + 10; // Adjust the scaling factor as needed
+
         return L.divIcon({
-            html: '<div>' + cluster.getChildCount() + '</div>',
-            className: 'custom-cluster-icon'
-              });
-          }
-      });
+            html: '<div>' + childCount + '</div>',
+            className: 'custom-cluster-icon',
+            iconSize: L.point(iconSize, iconSize),
+            iconAnchor: [iconSize / 2, iconSize / 2]
+                });
+            }
+        });
 
     var response = $.ajax({
           url: "windturbine3.geojson",

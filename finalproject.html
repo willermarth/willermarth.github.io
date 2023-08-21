@@ -121,9 +121,18 @@
                              
         })
     
-      $.when(response).done(function() { 
-        L.geoJson(response).addTo(map); 
-      });
+     $.when(response).done(function(){
+          
+
+               L.geoJson(response.responseJSON,
+                      { style: lineSymbology,
+                       onEachFeature: function(feature, layer) {
+                              layer.bindPopup("<b>Name: " +
+                                           feature.properties.p_name + "</b><br>" +
+                                           "Project Year: " + 
+                                           feature.properties.p_year);
+                       }
+                      }).addTo(map);
       
     }
     

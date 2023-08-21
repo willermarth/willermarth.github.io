@@ -153,7 +153,7 @@
      $.when(response).done(function() {
     var turbineLayer = L.geoJson(response.responseJSON, {
         onEachFeature: function(feature, layer) {
-            layer.bindPopup("<b>Name: " + feature.properties.p_name + "</b><br>" +
+            layer.bindPopup("<b>Project Name: " + feature.properties.p_name + "</b><br>" +
                 "Project Year: " + feature.properties.p_year);
         }
     });

@@ -125,8 +125,7 @@
           
 
                L.geoJson(response.responseJSON,
-                      { style: lineSymbology,
-                       onEachFeature: function(feature, layer) {
+                      onEachFeature: function(feature, layer) {
                               layer.bindPopup("<b>Name: " +
                                            feature.properties.p_name + "</b><br>" +
                                            "Project Year: " + 

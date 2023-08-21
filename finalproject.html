@@ -77,6 +77,17 @@
     padding: 10px; /* Add padding to each subsection */
     border: 1px solid #ccc; /* Add a border to each subsection */
   }
+
+    .project-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Add spacing below the stats container */
+  }
+
+  .project-stats p {
+    flex-basis: calc(33.33% - 10px); /* Divide the container into three equal parts */
+    margin: 0;
+  }
       
     html, body {
       height: 100%;
@@ -147,16 +158,22 @@
   <div id="map"></div>
 
   <div class="projects">
-    <h2>Projects of Interest</h2>
-    <div class="project-subsection">
-      <h3>Los Vientos Wind Farm, Texas</h3>
-        <p>Description of the Los Vientos Wind Farm project.</p>
+  <h2>Projects of Interest</h2>
+  <div class="project-subsection">
+    <h3>Los Vientos Wind Farm, Texas</h3>
+    <div class="project-stats">
+      <p><strong>Capacity:</strong> 910MW</p>
+      <p><strong>Completed:</strong> August 2016</p>
+      <p><strong>Owner:</strong> Duke Energy Renewables</p>
     </div>
-    <div class="project-subsection">
-      <h3>Offshore Wind Farm</h3>
-        <p>Description of the Offshore Wind Farm project.</p>
-    </div>
+    <p>Description of the Los Vientos Wind Farm project.</p>
   </div>
+  <div class="project-subsection">
+    <h3>Offshore Wind Farm</h3>
+    <p>Description of the Offshore Wind Farm project.</p>
+  </div>
+</div>
+
   
   <div class="sources">
   <h2>Sources Consulted and Additional Information</h2>

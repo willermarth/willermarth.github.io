@@ -12,7 +12,9 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
 
- <script src="windturbines.geojson"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  
   
   <style>
 
@@ -43,6 +45,58 @@
       margin: 20px auto; /* Center the section horizontally */
       max-width: 800px; /* Limit the width of the section */
       text-align: center; /* Center align the content within the div */
+    }
+    
+    .sources {
+      background-color: #b3e6d5; /* Background color for the section */
+      border: 1px solid #999; /* Add a border */
+      padding: 10px; /* Add padding for better appearance */
+      margin: 20px auto; /* Center the section horizontally */
+      max-width: 800px; /* Limit the width of the section */
+      text-align: center; /* Center align the content within the div */
+    }
+
+    .no-bullets {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .projects {
+    background-color: #e3d8f2; /* Background color for the section */
+    border: 1px solid #999; /* Add a border */
+    padding: 10px; /* Add padding for better appearance */
+    margin: 20px auto; /* Center the section horizontally */
+    max-width: 800px; /* Limit the width of the section */
+    text-align: center;
+  }
+
+  .projects h3 {
+    margin-top: 20px; /* Add spacing above each subsection title */
+  }
+
+  .projects .project-subsection {
+    background-color: white;
+    margin-bottom: 20px; /* Add spacing between subsections */
+    padding: 10px; /* Add padding to each subsection */
+    border: 1px solid #ccc; /* Add a border to each subsection */
+  }
+
+    .project-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Add spacing below the stats container */
+  }
+
+  .project-stats p {
+    flex-basis: calc(33.33% - 10px); /* Divide the container into three equal parts */
+    margin: 0;
+  }
+
+    .losvientos-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
       
     html, body {
       height: 100%;
@@ -52,12 +106,12 @@
   </style>
   
   <script>
+  $(document).ready(function() {
+    
     var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.osm.org">HOT OSM</a>'
     });
-
-    function initialize() {
       
     var map = L.map('map', {
       center: [37.0902, -95.7129], 
@@ -65,23 +119,37 @@
       layers: [OpenStreetMap_HOT]
         });
 
-    L.geoJson(turbines,
-                { onEachFeature: function(feature, layer) {
-                     layer.bindPopup("<b>Project Name: " +
-                     feature.properties.p_name + "</b>");
-                   }
-                  }).addTo(map);
-      
-    }
+    var response = $.ajax({
+          url: "windturbine3.geojson",
+          dataType: "json",
+          success: console.log("windturbine data loaded!"),
+          error: function(xhr) {
+            alert(xhr.statusText);
+          }
+                             
+        })
+    
+     $.when(response).done(function(){
+       L.geoJson(response.responseJSON,
+                 { onEachFeature: function(feature, layer) {
+                              layer.bindPopup("<b>Name: " +
+                                           feature.properties.p_name + "</b><br>" +
+                                           "Project Year: " + 
+                                           feature.properties.p_year);
+                 }   
+             }).addTo(map);
+        })
+    })
     
     
   </script>
   
 </head>
-<body onload="initialize()">
+<body>
   <h1>
     Wind Energy in the U.S.
   </h1>
+  
   <div class="history">
     <h2>History</h2>
     <p>People have used wind energy to propel boats along the Nile River as early as 5,000 BC. 
@@ -96,10 +164,57 @@
     <p>In the early 1980s, with country-wide oil shortages, alternative energy sources were sought after. In California, thousands of wind turbines were constructed.
     In the 90s national and state financial incentives were established to promote renewable energy use. Today, the share of U.S. electricity generation from wind energy has grown from <b>less than 1%</b> in 1990 to about <b>10.2%</b> in 2022.</p>
   </div>
+  
   <div class="wind-turbine-locations">
     <h2>Current U.S. Wind Turbine Locations</h2>
     <p>The map below shows the locations of all wind turbines in the U.S. in 2023. Toggle the buttons below the map to focus in on areas of interest.</p>
   </div>
+  
   <div id="map"></div>
+
+  <div class="projects">
+  <h2>Projects of Interest</h2>
+  <div class="project-subsection">
+    <h3>Los Vientos Wind Farm, Texas</h3>
+    <div class="project-stats">
+      <p>Capacity: <strong>910MW</strong></p>
+      <p>Completed: <strong>August 2016</strong></p>
+      <p>Owner: <strong>Duke Energy Renewables</strong></p>
+    </div>
+    <p>Duke Energy began construction of this large windfarm project in 2012 with five phases and completed the project in 2016. 
+      The first project phase constructed allowed for the production of 400MW of emission-free electricity, which is enough to collectively power approximately 120,000 homes. 
+    Each wind turbine has a hub height of 295ft and rotor diameter of 334ft. The wind turbine foundations are made of more than 680 cubic yards of concrete and 66t of steel reinforcement.
+    CPS Energy, a utility company purchases electricity under a 25 year Power Purchase Agreement (PPA) in which the electricity is sold at a discounted rate. Austin Energy, 
+      one of the largest utilities in the country and the electricity supplier for Austin, purchases output and the associated renewable energy credits that are mandated for utility companies.
+    </p>
+    <img src="losvientos.png" class="losvientos-image">
+    <p>
+      The Los Vientos Wind Farm (pictured above) covers approximately 50,000 acres or 75 square miles of land.
+    </p>
+  </div>
+  <div class="project-subsection">
+    <h3>Block Island Wind Farm, Rhode Island</h3>
+    <div class="project-stats">
+      <p>Capacity: <strong>30MW</strong></p>
+      <p>Completed: <strong>August 2016</strong></p>
+      <p>Owner: <strong>Orsted US Offshore Wind</strong></p>
+    </div>
+    <p>Block Island Wind Farm is a 30 MW off-shore wind project that consist of 5 Alstom Haliade 150-6MW wind turbines. These immense turbines stand at 600 feet tall and can withstand a category three storm.
+    Power is transmitted along a 21 mile transmission submarine power cable buried under the ocean floor. The total construction cost for this project was $290 million dollars.</p>
+  </div>
+</div>
+
+  
+  <div class="sources">
+  <h2>Sources Consulted and Additional Information</h2>
+  <ul class="no-bullets">
+    <li><a href="https://www.eia.gov/energyexplained/wind/history-of-wind-power.php#:~:text=People%20have%20been%20using%20wind,Persia%20and%20the%20Middle%20East.">U.S. Energy Information Administration</a></li>
+    <li><a href="https://www.weforum.org/agenda/2022/04/us-wind-electricity-generation-renewable-energy/">World Economic Forum: Wind Generation by State</a></li>
+    <li><a href="https://www.power-technology.com/projects/los-vientos-wind-farm-texas/">Power Technology: Los Vientos Wind Farm</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Block_Island_Wind_Farm">Block Island Wind Farm</a></li>
+  </ul>
+  </div>
+  
 </body>
 </html>
+

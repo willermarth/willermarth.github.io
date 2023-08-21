@@ -51,7 +51,7 @@
     .custom-cluster-icon {
     border-radius: 50%;
     color: white;
-    background-color: #5fd7d9; /* Add a background color */
+    background-color: #5fd7d9; 
     text-align: center;
     line-height: 1.5;
     font-weight: bold;
@@ -136,7 +136,7 @@
     var markers = L.markerClusterGroup({
     iconCreateFunction: function(cluster) {
         var childCount = cluster.getChildCount();
-        var iconSize = childCount + 3; // Adjust the scaling factor as needed
+        var iconSize = childCount + 3;
 
         return L.divIcon({
             html: '<div>' + childCount + '</div>',
@@ -165,8 +165,8 @@
         }
     });
 
-    markers.addLayer(turbineLayer); // Add the layer with markers to the cluster group
-    map.addLayer(markers); // Add the cluster group to the map
+    markers.addLayer(turbineLayer); 
+    map.addLayer(markers); 
         });
     
     })

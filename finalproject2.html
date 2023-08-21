@@ -12,6 +12,8 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
 
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.0/dist/leaflet.markercluster.js"></script>
+
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   
@@ -45,6 +47,16 @@
       margin: 20px auto; /* Center the section horizontally */
       max-width: 800px; /* Limit the width of the section */
       text-align: center; /* Center align the content within the div */
+    }
+
+    .custom-cluster-icon {
+      background-color: #ff5733;
+      border-radius: 50%;
+      color: white;
+      width: 36px;
+      height: 36px;
+      text-align: center;
+      line-height: 36px;
     }
     
     .sources {
@@ -119,6 +131,15 @@
       layers: [OpenStreetMap_HOT]
         });
 
+    var markers = L.markerClusterGroup({
+    iconCreateFunction: function(cluster) {
+        return L.divIcon({
+            html: '<div>' + cluster.getChildCount() + '</div>',
+            className: 'custom-cluster-icon'
+              });
+          }
+      });
+
     var response = $.ajax({
           url: "windturbine3.geojson",
           dataType: "json",
@@ -129,16 +150,17 @@
                              
         })
     
-     $.when(response).done(function(){
-       L.geoJson(response.responseJSON,
-                 { onEachFeature: function(feature, layer) {
-                              layer.bindPopup("<b>Name: " +
-                                           feature.properties.p_name + "</b><br>" +
-                                           "Project Year: " + 
-                                           feature.properties.p_year);
-                 }   
-             }).addTo(map);
-        })
+     $.when(response).done(function() {
+    var turbineLayer = L.geoJson(response.responseJSON, {
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup("<b>Name: " + feature.properties.p_name + "</b><br>" +
+                "Project Year: " + feature.properties.p_year);
+        }
+    });
+
+    markers.addLayer(turbineLayer); // Add the layer with markers to the cluster group
+    map.addLayer(markers); // Add the cluster group to the map
+});
     })
     
     

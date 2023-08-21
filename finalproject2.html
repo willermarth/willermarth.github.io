@@ -137,7 +137,7 @@
     var markers = L.markerClusterGroup({
     iconCreateFunction: function(cluster) {
         var childCount = cluster.getChildCount();
-        var iconSize = childCount + 10; // Adjust the scaling factor as needed
+        var iconSize = childCount + 20; // Adjust the scaling factor as needed
 
         return L.divIcon({
             html: '<div>' + childCount + '</div>',

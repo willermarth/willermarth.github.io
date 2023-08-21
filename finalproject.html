@@ -122,16 +122,14 @@
         })
     
      $.when(response).done(function(){
-          
-
-               L.geoJson(response.responseJSON,
+       L.geoJson(response.responseJSON,
                       onEachFeature: function(feature, layer) {
                               layer.bindPopup("<b>Name: " +
                                            feature.properties.p_name + "</b><br>" +
                                            "Project Year: " + 
                                            feature.properties.p_year);
-                       }
-                      }).addTo(map);
+                   })
+             }).addTo(map);
       
     }
     
